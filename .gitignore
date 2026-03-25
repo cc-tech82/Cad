@@ -1,7 +1,3 @@
 __pycache__/
 *.pyc
-*.pyo
 output/
-*.sldprt
-*.sldasm
-*.slddrw

@@ -3,6 +3,12 @@ Natural-language parser for hex screw descriptions.
 Uses the Claude API to extract structured parameters.
 """
 
+# ── Anthropic API key ─────────────────────────────────────────────────────────
+# Replace the value below with your key, or leave it and set the
+# ANTHROPIC_API_KEY environment variable instead.
+ANTHROPIC_API_KEY = "YOUR_API_KEY_HERE"
+# ─────────────────────────────────────────────────────────────────────────────
+
 import json
 import os
 import anthropic
@@ -38,7 +44,7 @@ def parse_request(user_message: str) -> dict:
     Returns a dict with keys: nominal_fraction, nominal_decimal, shaft_length_in,
     hole_diameter_in, thread_type, screw_type, notes.
     """
-    client = anthropic.Anthropic()
+    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
     response = client.messages.create(
         model="claude-opus-4-6",
