@@ -160,11 +160,11 @@ def create_hex_screw(
         print("[SW] Warning: shaft extrusion returned None — check SolidWorks log.")
 
     # ── Tip chamfer (optional) ─────────────────────────────────────────────
+    # Select bottom circular edge by 3-D coordinate (more reliable than "Edge<1>")
     chamfer_size = d_m * 0.075
     try:
-        # The bottom circular edge of the shaft sits at Z = -L_m
         found = part.Extension.SelectByID2(
-            "Edge<1>", "EDGE", 0.0, -L_m, 0.0, False, 0, None, 0
+            "", "EDGE", d_m / 2, 0.0, -L_m, False, 0, None, 0
         )
         if found:
             part.FeatureManager.InsertFeatureChamfer(4, 1, False, chamfer_size, 0.7854, 0, 0, 0)
